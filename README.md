@@ -1,0 +1,2 @@
+# Student-Management-System
+Student management system deals with all kind of student details, academic related reports, course details, curriculum details, batch details, result details and other resource related details too. It tracks all the details of a students from the day one to end of his course which can be used for all reporting purpose tracking of attendance, progress in the course, complete semester, coming semester curriculum details, exam details, project of any other assignment details, final exam details etc.
