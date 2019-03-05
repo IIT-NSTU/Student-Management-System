@@ -17,7 +17,7 @@ public class AddfacultyMember extends AddMember{
             
   
                 frame.dispose();
-                Home admin =new Home();
+                Home home =new Home();
         }
         
         });
