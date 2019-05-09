@@ -1,5 +1,5 @@
 
-package project;
+package projectsms;
 
 import java.awt.Container;
 import java.awt.Font;
@@ -16,12 +16,13 @@ import javax.swing.JTextField;
 public class Login extends JFrame{
     
     
-           private Container c;
-           private Font F ;
-           private JLabel username,password;
-           private JTextField usernameField;
-           private JPasswordField passField;
-           private JButton submit;
+            Container c;
+            Font F ;
+            JLabel username,password;
+            JTextField usernameField;
+            JPasswordField passField;
+            JButton submit;
+            JFrame frame;
     
     Login(){
         
@@ -60,7 +61,7 @@ public class Login extends JFrame{
         c.add(submit);
         
         
-        JFrame frame = new JFrame();
+         frame = new JFrame();
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(200,50,800,650);
@@ -69,32 +70,7 @@ public class Login extends JFrame{
         frame.setTitle("Faculty");
         frame.add(c);
         
-        submit.addActionListener(new ActionListener(){
         
-  
-        @Override
-        public void actionPerformed(ActionEvent e){
- 
-            String name=usernameField.getText();
-            String pass= passField.getText();
- 
-                if(name.equals("Admin") && pass.equals("1234")){
-                    JOptionPane.showMessageDialog(null,"Welcome");
-                    frame.dispose();
-                    TeacherModuleDemo te=new TeacherModuleDemo();
-                }
-                else{
-                    JOptionPane.showMessageDialog(null,"Wrong Password");
-                    usernameField.setText("");
-                    passField.setText("");
-                }
-        }
-        
-        });
     }
-   // public static void main(String[] args) {
-   //     Login l=new Login();
-   // }
    
 }
-

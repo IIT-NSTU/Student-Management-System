@@ -7,16 +7,21 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.border.Border;
 
 
 public class AdminstratorDemo extends JFrame{
     
     private Container c;
-    private JLabel adminlabel,label1,label2,label3,label4,label5;
-    private JButton homebtn,addfacultybtn,addstubtn,updatebtn,deletestubtn,routinebtn;
+    private JLabel adminlabel,label1,label2,label3,label4,label5,label6,label7,label8;
+    private JButton homebtn,addfacultybtn,addstubtn,updatebtn,deletestubtn,updatefacbtn,deletetfacbtn,routinebtn,addroutine;
     private final Font f;
     private final Font hf;
     private final Cursor cursor; 
@@ -42,7 +47,7 @@ public class AdminstratorDemo extends JFrame{
         c.add(label1);
         
         updatebtn=new JButton("Update Student Information");
-        updatebtn.setBounds(200,140,400,50);
+        updatebtn.setBounds(200,140,370,50);
         updatebtn.setFont(f);
         updatebtn.setCursor(cursor);
         updatebtn.setBackground(new java.awt.Color(0,230,230));
@@ -89,20 +94,67 @@ public class AdminstratorDemo extends JFrame{
         label5.setBounds(180,380,20,50);
         c.add(label5);
         
+        updatefacbtn=new JButton("Update Faculty member Information");
+        updatefacbtn.setBounds(200,380,450,50);
+        updatefacbtn.setFont(f);
+        updatefacbtn.setCursor(cursor);
+        updatefacbtn.setBackground(new java.awt.Color(0,230,230));
+        c.add(updatefacbtn);
+        
+        label6=new JLabel("6.");
+        label6.setFont(f);
+        label6.setBounds(180,440,20,50);
+        c.add(label6);
+        
+        deletetfacbtn=new JButton("Delete a Faculty member");
+        deletetfacbtn.setBounds(200,440,330,50);
+        deletetfacbtn.setFont(f);
+        deletetfacbtn.setCursor(cursor);
+        deletetfacbtn.setBackground(new java.awt.Color(0,230,230));
+        c.add(deletetfacbtn);
+        
+        label7=new JLabel("7.");
+        label7.setFont(f);
+        label7.setBounds(180,500,20,50);
+        c.add(label7);
+        
         routinebtn=new JButton("Update Routine");
-        routinebtn.setBounds(200,380,235,50);
+        routinebtn.setBounds(200,500,220,50);
         routinebtn.setFont(f);
         routinebtn.setCursor(cursor);
         routinebtn.setBackground(new java.awt.Color(0,230,230));
         c.add(routinebtn);
         
+        label8=new JLabel("8.");
+        label8.setFont(f);
+        label8.setBounds(180,560,20,50);
+        c.add(label8);
+        
+        addroutine=new JButton("Add Routine");
+        addroutine.setBounds(200,560,210,50);
+        addroutine.setFont(f);
+        addroutine.setCursor(cursor);
+        addroutine.setBackground(new java.awt.Color(0,230,230));
+        c.add(addroutine);
+        
+        
         homebtn=new JButton("Home");
-        homebtn.setBounds(300,500,150,50);
+        homebtn.setBounds(300,620,150,50);
         homebtn.setFont(f);
         homebtn.setBackground(Color.BLACK);
         homebtn.setForeground(Color.WHITE);
         homebtn.setCursor(cursor);
         c.add(homebtn);
+        
+        Border emptyBorder = BorderFactory.createEmptyBorder();
+        addstubtn.setBorder(emptyBorder);
+        updatebtn.setBorder(emptyBorder);
+       deletestubtn.setBorder(emptyBorder);
+        addfacultybtn.setBorder(emptyBorder);
+        updatefacbtn.setBorder(emptyBorder);
+        deletetfacbtn.setBorder(emptyBorder);
+        routinebtn.setBorder(emptyBorder);
+        addroutine.setBorder(emptyBorder);
         
         JFrame frame=new JFrame();
         
@@ -160,8 +212,134 @@ public class AdminstratorDemo extends JFrame{
         }
         
         });
+        
+        updatebtn.addActionListener(new ActionListener(){
+        
+  
+        @Override
+        public void actionPerformed(ActionEvent e){
+            
+  
+                if(e.getSource()==updatebtn){
+                 
+                    frame.dispose();
+                    try {
+                        UpdateStudentInformation up = new UpdateStudentInformation();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(AdminstratorDemo.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+        }
+        
+        });
+        
+       updatefacbtn.addActionListener(new ActionListener(){
+        
+  
+        @Override
+        public void actionPerformed(ActionEvent e){
+            
+  
+                if(e.getSource()==updatefacbtn){
+                 
+                    frame.dispose();
+                    try {
+                        UpdateFacultyInformation up = new UpdateFacultyInformation();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(AdminstratorDemo.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+        }
+        
+        });
+        
+        deletestubtn.addActionListener(new ActionListener(){
+        
+  
+        @Override
+        public void actionPerformed(ActionEvent e){
+            
+  
+                if(e.getSource()==deletestubtn){
+                 
+                    frame.dispose();
+                    try {
+                        DeleteStudent deletestu = new DeleteStudent();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(AdminstratorDemo.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                   
+                    
+                    
+                }
+        }
+        
+        });
+        
+         deletetfacbtn.addActionListener(new ActionListener(){
+        
+  
+        @Override
+        public void actionPerformed(ActionEvent e){
+            
+  
+                if(e.getSource()== deletetfacbtn){
+                 
+                    frame.dispose();
+                    try {
+                        DeleteFaculty delete = new DeleteFaculty();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(AdminstratorDemo.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                   
+                    
+                    
+                }
+        }
+        
+        });
+         routinebtn.addActionListener(new ActionListener(){
+        
+  
+        @Override
+        public void actionPerformed(ActionEvent e){
+            
+  
+                if(e.getSource()== routinebtn){
+                 
+                    frame.dispose();
+                    try {
+                        UpdateRoutine updateRoutine = new UpdateRoutine();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(AdminstratorDemo.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                   
+                    
+                    
+                }
+        }
+        
+        });
+         addroutine.addActionListener(new ActionListener(){
+        
+  
+        @Override
+        public void actionPerformed(ActionEvent e){
+            
+  
+                if(e.getSource()== addroutine){
+                 
+                    frame.dispose();
+                    AddRoutine updateRoutine = new AddRoutine();
+                   
+                    
+                    
+                }
+        }
+        
+        });         
     }
-    //public static void main(String[] args) {
-      //  AdminstratorDemo adminDemo = new AdminstratorDemo();
-   // }
+    public static void main(String[] args) {
+       AdminstratorDemo adminDemo = new AdminstratorDemo();
+    }
 }

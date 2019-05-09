@@ -1,5 +1,9 @@
 
-package project;
+package projectsms;
+
+
+
+
 
 import java.awt.Color;
 import java.awt.Container;
@@ -15,11 +19,12 @@ import javax.swing.border.Border;
 
 
 public class TeacherModuleDemo extends JFrame{
-    private Container c;
-    private JLabel contentlabel,label1,label2,label3;
-    private JButton coursebtn,addbtn,updatebtn,backbtn,homebtn;
-    private Font hf,f;
-    private Cursor cursor;
+     Container c;
+     JLabel contentlabel,label1,label2,label3,label4,label5,label6;
+     JButton coursebtn,addbtn,updatebtn,backbtn,homebtn,coursemarkbtn,courseattend,coursepresent,back;
+     Font hf,f;
+     Cursor cursor;
+     JFrame frame;
     TeacherModuleDemo()
     {
          c=this.getContentPane();
@@ -67,20 +72,39 @@ public class TeacherModuleDemo extends JFrame{
         label3.setBounds(180,260,20,50);
         c.add(label3);
         
-        updatebtn=new JButton("Update Personal Details");
-        updatebtn.setBounds(200,260,300,50);
-        updatebtn.setFont(f);
-        updatebtn.setCursor(cursor);
-        updatebtn.setBackground(new java.awt.Color(0,230,230));
-        c.add(updatebtn);
+        coursemarkbtn=new JButton("Courses CT and attendence");
+        coursemarkbtn.setBounds(200,260,360,50);
+        coursemarkbtn.setFont(f);
+        coursemarkbtn.setCursor(cursor);
+        coursemarkbtn.setBackground(new java.awt.Color(0,230,230));
+        c.add(coursemarkbtn);
         
-        backbtn=new JButton("Back");
-        backbtn.setBounds(100,500,150,50);
-        backbtn.setFont(f);
-        backbtn.setBackground(Color.BLACK);
-        backbtn.setForeground(Color.WHITE);
-        backbtn.setCursor(cursor);
-        c.add(backbtn);
+        label4=new JLabel("4.");
+        label4.setFont(f);
+        label4.setBounds(180,320,20,50);
+        c.add(label4);
+        
+        courseattend=new JButton("Courses Attendence");
+        courseattend.setBounds(200,320,260,50);
+        courseattend.setFont(f);
+        courseattend.setCursor(cursor);
+        courseattend.setBackground(new java.awt.Color(0,230,230));
+        c.add(courseattend);
+        
+        label5=new JLabel("5.");
+        label5.setFont(f);
+        label5.setBounds(180,380,20,50);
+        c.add(label5);
+        
+        coursepresent=new JButton("Course Percentage");
+        coursepresent.setBounds(200,380,260,50);
+        coursepresent.setFont(f);
+        coursepresent.setCursor(cursor);
+        coursepresent.setBackground(new java.awt.Color(0,230,230));
+        c.add(coursepresent);
+        
+        
+        
         
         homebtn=new JButton("Home");
         homebtn.setBounds(500,500,150,50);
@@ -90,12 +114,23 @@ public class TeacherModuleDemo extends JFrame{
         homebtn.setCursor(cursor);
         c.add(homebtn);
         
+        back=new JButton("Back");
+        back.setBounds(200,500,150,50);
+        back.setFont(f);
+        back.setBackground(Color.BLACK);
+        back.setForeground(Color.WHITE);
+       back.setCursor(cursor);
+        c.add(back);
+        
         Border emptyBorder = BorderFactory.createEmptyBorder();
         coursebtn.setBorder(emptyBorder);
         addbtn.setBorder(emptyBorder);
-        updatebtn.setBorder(emptyBorder);
+        coursemarkbtn.setBorder(emptyBorder);
+        courseattend.setBorder(emptyBorder);
+        coursepresent.setBorder(emptyBorder);
         
-        JFrame frame=new JFrame();
+        
+        frame=new JFrame();
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(200,50,800,650);
@@ -104,68 +139,36 @@ public class TeacherModuleDemo extends JFrame{
         frame.setVisible(true);
         frame.add(c);
         
-         backbtn.addActionListener(new ActionListener(){
         
-  
-        @Override
-        public void actionPerformed(ActionEvent e){
-            
-            if(e.getSource()==backbtn)
-            {
-                 frame.dispose();
-                Login login=new Login();  
+        
+           
+            back.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               if(ae.getSource()==back)
+               {
+                  frame.dispose();
+                  TeacherNameDemo n = new TeacherNameDemo();
+                  
+               }
             }
-                        
-        }
-        
+            
         });
+        
          
-          homebtn.addActionListener(new ActionListener(){
-        @Override
-        public void actionPerformed(ActionEvent e){
-            
-            if(e.getSource()==homebtn)
-            {
-                 frame.dispose();
-                HomeDemo home=new HomeDemo();  
-            }
-                        
-        }
+         
         
-        });
-        coursebtn.addActionListener(new ActionListener(){
-        @Override
-        public void actionPerformed(ActionEvent e){
-            
-            if(e.getSource()==coursebtn)
-            {
-                 frame.dispose();
-                CoursesDemo course=new CoursesDemo();  
-            }
-                        
-        }
         
-        });
-        addbtn.addActionListener(new ActionListener(){
-        @Override
-        public void actionPerformed(ActionEvent e){
-            
-            if(e.getSource()==addbtn)
-            {
-                 frame.dispose();
-                AddCourses course=new AddCourses();  
-            }
-                        
-        }
+       
         
-        });
         
         
     }
-   /* public static void main(String[] args) {
-     TeacherModuleDemo teacher=new TeacherModuleDemo();   
-        
-        
-    }*/
+    
+    public static void main(String[] args) {
+        TeacherModuleDemo t = new TeacherModuleDemo();
+    }
+   
     
 }
+
