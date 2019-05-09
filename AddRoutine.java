@@ -1,35 +1,27 @@
 
-package projectsms;
-
+package project;
 
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 public class AddRoutine extends JFrame{
     
     public Container c;
     public JLabel daylbl,firstlbl,secondlbl,thirdlbl,fourthlbl,fifthlbl,sixthlbl;
     public JTextField daytf,firsttf,secondtf,thirdtf,fourthtf,fifthtf,sixthtf;
-    public JButton add,back,home;
+    public JButton add,clear,home;
     public Font f;
-   
     
     AddRoutine()
     {
@@ -118,12 +110,12 @@ public class AddRoutine extends JFrame{
         add.setForeground(Color.WHITE);
         c.add(add);
         
-        back=new JButton("Back");
-        back.setBounds(180,600,150,50);
-        back.setFont(f);
-        back.setBackground(Color.BLACK);
-        back.setForeground(Color.WHITE);
-        c.add(back);
+        clear=new JButton("Clear");
+        clear.setBounds(180,570,150,50);
+        clear.setFont(f);
+        clear.setBackground(Color.BLACK);
+        clear.setForeground(Color.WHITE);
+        c.add(clear);
         
         home=new JButton("Home");
         home.setBounds(520,570,150,50);
@@ -132,20 +124,16 @@ public class AddRoutine extends JFrame{
         home.setForeground(Color.WHITE);
         c.add(home);
         
-        JFrame frame=new JFrame();
-        
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(200,50,800,650);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setTitle("Update Routine data");
-        frame.setVisible(true);
-        frame.add(c);
-        
-        back.addActionListener(new ActionListener(){
+        clear.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-            frame.dispose();
-            AdminstratorDemo a = new AdminstratorDemo();
+            daytf.setText("");
+            firsttf.setText("");
+            secondtf.setText("");
+            thirdtf.setText("");
+            fourthtf.setText("");
+            fifthtf.setText("");
+            sixthtf.setText("");
             }
              });
         
@@ -155,14 +143,13 @@ public class AddRoutine extends JFrame{
             
             if(e.getSource()==home)
             {
-                frame.dispose();
-                Home home=new Home();  
+                dispose();
+                HomeDemo home=new HomeDemo();  
             }
             }
         
         });
 
-        
         add.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -175,28 +162,35 @@ public class AddRoutine extends JFrame{
          String etf=fourthtf.getText();
          String ctf=fifthtf.getText();
          String btf=sixthtf.getText();
-         
-             JOptionPane.showMessageDialog(null,"Added successfully");
-              filewriter(sntf,mntf,fntf,httf,etf,ctf,btf); 
+       
+         filewriter(sntf,mntf,fntf,httf,etf,ctf,btf); 
                 }
              }
              });
                
         
+        JFrame frame=new JFrame();
+        
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setBounds(200,50,800,650);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setTitle("Add Routine data");
+        frame.setVisible(true);
+        frame.add(c);
         
     }
-    
+        
         public void filewriter(String sntf,String mntf,String fntf,String httf,String etf,String ctf,String btf)
         {
         try{
             FileWriter fn=new FileWriter("routine.txt",true);
-            fn.write(sntf+" "+"#");
-            fn.write(mntf+" "+"#");
-            fn.write(fntf+" "+"#");
-            fn.write(httf+" "+"#");
-            fn.write(etf+" "+"#");
-            fn.write(ctf+" "+"#");
-            fn.write(btf+" "+"#");
+            fn.write(sntf+" "+"");
+            fn.write(mntf+" "+"");
+            fn.write(fntf+" "+"");
+            fn.write(httf+" "+"");
+            fn.write(etf+" "+"");
+            fn.write(ctf+" "+"");
+            fn.write(btf+" "+"");
             fn.write(System.getProperty("line.separator"));
 
            fn.close();   
@@ -207,14 +201,10 @@ public class AddRoutine extends JFrame{
         }
          
         }
-               
-        
-        
+    
+    
+    public static void main(String[] args) {
+        AddRoutine r =new AddRoutine();
     }
-        
-        
     
-
-    
-
-
+}

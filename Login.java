@@ -1,10 +1,16 @@
 
-package projectsms;
+package project;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,9 +27,12 @@ public class Login extends JFrame{
             JLabel username,password;
             JTextField usernameField;
             JPasswordField passField;
-            JButton submit;
-            JFrame frame;
-    
+            JButton submit,back,reset;
+           
+           String user="Admin";
+           String pass="1234";
+            String newpassw;
+           
     Login(){
         
         
@@ -56,12 +65,132 @@ public class Login extends JFrame{
         c.add(passField);
         
         submit = new JButton("Submit");
-        submit.setBounds(750, 415, 165, 50);
+        submit.setBounds(750, 440, 165, 50);
+        submit.setBackground(Color.BLACK);
+        submit.setForeground(Color.WHITE);
         submit.setFont(F);
         c.add(submit);
         
+        back=new JButton("Back");
+        back.setBounds(750, 520, 165, 50);
+        back.setFont(F);
+        back.setBackground(Color.BLACK);
+        back.setForeground(Color.WHITE);
+        c.add(back);
         
-         frame = new JFrame();
+        reset=new JButton("Reset");
+        reset.setBounds(450, 440, 165, 50);
+        reset.setFont(F);
+        reset.setBackground(Color.BLACK);
+        reset.setForeground(Color.WHITE);
+        c.add(reset);
+        
+        
+        
+        
+       
+        
+        
+        
+        File file  = new File("password.txt");
+        try{
+        FileWriter fw = new FileWriter(file);
+        fw.write(pass);
+        fw.write(System.getProperty("line.separator"));
+        fw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+         
+      
+ 
+         reset.addActionListener(new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e){
+            
+            if(e.getSource()==reset)
+            {
+                String m = JOptionPane.showInputDialog(null, "Current Password", 
+                "Change Password", JOptionPane.INFORMATION_MESSAGE);
+                
+                if(m.equals(newpassw))
+                {
+                     
+                     File file  = new File("password.txt");
+                     file.delete(); 
+                   Changepass c = new Changepass(); 
+                  // c.setVisible(true);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Invalid Password");
+                }
+        
+            }
+            }
+        
+        });
+        
+        
+         back.addActionListener(new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e){
+            
+            if(e.getSource()==back)
+            {
+                dispose();
+                Teachers t=new Teachers();  
+            }
+            }
+        
+        });
+        
+        
+        
+        submit.addActionListener(new ActionListener(){
+        
+  
+        @Override
+        public void actionPerformed(ActionEvent e){
+            
+             
+       
+           
+      
+ 
+            String name=usernameField.getText();
+            String password= passField.getText();
+             File file  = new File("password.txt");
+            try{
+           FileReader  fr = new FileReader(file);
+           BufferedReader br = new BufferedReader(fr); 
+          String newpassw =br.readLine();
+           
+          System.out.println(newpassw);
+           
+      }
+      catch(IOException ea)
+      {
+          ea.printStackTrace();
+      }
+        
+             
+                if(name.equals(user) && password.equals(newpassw)){
+                    JOptionPane.showMessageDialog(null,"Welcome");
+                    dispose();
+                    TeacherModuleDemo te=new TeacherModuleDemo();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Wrong Password");
+                    usernameField.setText("");
+                    passField.setText("");
+                }
+        }
+        
+        });
+        
+        JFrame frame = new JFrame();
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(200,50,800,650);
@@ -70,7 +199,10 @@ public class Login extends JFrame{
         frame.setTitle("Faculty");
         frame.add(c);
         
-        
+    }
+    public static void main(String[] args) {
+        Login l=new Login();
     }
    
 }
+
